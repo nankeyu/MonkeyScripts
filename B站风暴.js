@@ -56,7 +56,6 @@
             }
         }
 
-
     } else {
         console.log("player-container还未就绪");
     }
