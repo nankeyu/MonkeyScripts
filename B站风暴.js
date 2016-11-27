@@ -33,31 +33,31 @@
 
     var container = document.getElementById("player-container");
     var btnSend = document.getElementById("danmu-send-btn");
-    var stormNode = null;
 
     if (container !== null) {
         console.log("player-container已经就绪");
 
         EventUtil.addHandler(container, "DOMNodeInserted", function (event) {
-            stormNode = event.target;
-            if (stormNode.id === "beat-storm-action") {
-                stormNode.focus();
-                stormNode.click();                
-                btnSend.click();
-            }
+            BeatStorm(event.target);
         });
 
         for (i = 0; i < container.childElementCount; i++) {
             var child = container.children[i];
-            if (child.id === "beat-storm-action") {
-                child.focus();
-                child.click();                
-                btnSend.click();
-            }
+            BeatStorm(child);
         }
 
     } else {
         console.log("player-container还未就绪");
+    }
+
+    function BeatStorm(stormElement) {
+        if (stormElement.id === "beat-storm-action") {
+            setTimeout(function () {
+                stormElement.click();
+                console.log(stormElement);
+                btnSend.click();
+            }, 100);
+        }
     }
 
 })();
