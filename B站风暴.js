@@ -32,7 +32,6 @@
     };
 
     var container = document.getElementById("player-container");
-    var btnSend = document.getElementById("danmu-send-btn");
 
     if (container !== null) {
         console.log("player-container已经就绪");
@@ -54,10 +53,20 @@
         if (stormElement.id === "beat-storm-action") {
             setTimeout(function () {
                 stormElement.click();
-                console.log(stormElement);
-                btnSend.click();
+                setTimeout(function () {
+                    var btnSend = document.getElementById("danmu-send-btn");
+                    btnSend.click();
+                }, 100);
             }, 100);
         }
     }
+
+    var chatList = document.getElementById("chat-msg-list");
+    EventUtil.addHandler(chatList, "DOMNodeInserted", function (event) {
+        var chatNode=event.target;
+        if(chatNode.className===""){
+            chatNode.style.display="none";
+        }
+    });
 
 })();
